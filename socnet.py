@@ -96,7 +96,7 @@ def _build_node_trace(color):
         'x': [],
         'y': [],
         'text': [],
-        'textposition': node_label_position,
+        'textposition': 'middle center' if node_label_position == 'hover' else node_label_position,
         'hoverinfo': hoverinfo,
         'mode': mode,
         'marker': {
@@ -232,6 +232,18 @@ def reset_node_colors(g):
 def reset_edge_colors(g):
     for e in g.edges:
         g.edges[e[0], e[1]]['color'] = edge_color
+
+
+def set_circle_positions(g):
+    layout = networkx.circular_layout(g)
+
+    _set_layout(g, layout)
+
+
+def set_spring_positions(g):
+    layout = networkx.spring_layout(g)
+
+    _set_layout(g, layout)
 
 
 def reset_positions(g):
